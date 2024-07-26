@@ -2,6 +2,8 @@ import streamlit as st
 import math
 import streamlit.components.v1 as components
 
+st.set_page_config(page_title="BMI 2.0 Calculator and 3D Visualizer v2", page_icon="🔥")
+
 def calculate_bmi(weight, height):
     return weight / (height / 100) ** 2
 
