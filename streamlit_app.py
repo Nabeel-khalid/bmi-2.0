@@ -4,6 +4,8 @@ import numpy as np
 import math
 import plotly.graph_objects as go
 
+st.set_page_config(page_title="BMI 2.0 Calculator and 3D Visualizer v1", page_icon="🏃‍♂️")
+
 def calculate_bmi(weight, height):
     return weight / (height / 100) ** 2
 
