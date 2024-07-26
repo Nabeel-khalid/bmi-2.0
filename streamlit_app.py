@@ -2,6 +2,7 @@ import streamlit as st
 import matplotlib.pyplot as plt
 import numpy as np
 import math
+import plotly.graph_objects as go
 
 def calculate_bmi(weight, height):
     return weight / (height / 100) ** 2
@@ -52,6 +53,31 @@ def plot_body_fat_categories(height, neck, waist, hip, gender, user_weight, user
     plt.grid(True)
     st.pyplot(plt)
 
+def plot_3d_shape(weight, height, waist, hip, gender):
+    # Generate a simple 3D shape that changes with weight and height
+    fig = go.Figure(data=[
+        go.Mesh3d(
+            x=[0, weight, 0, -weight],
+            y=[0, height, -height, 0],
+            z=[0, waist, hip if hip else waist, 0],
+            color='lightblue',
+            opacity=0.50
+        )
+    ])
+
+    fig.update_layout(
+        scene=dict(
+            xaxis=dict(nticks=4, range=[-100, 100]),
+            yaxis=dict(nticks=4, range=[0, 220]),
+            zaxis=dict(nticks=4, range=[0, 150]),
+            xaxis_title='Weight',
+            yaxis_title='Height',
+            zaxis_title='Waist/Hip'
+        )
+    )
+    
+    st.plotly_chart(fig)
+
 def main():
     st.title("BMI 2.0 Calculator and 3D Visualizer")
 
@@ -77,11 +103,7 @@ def main():
         st.write(f"Calculated Body Fat Percentage: {bfp:.2f}%")
         
         plot_body_fat_categories(height, neck, waist, hip, gender, weight, bfp, units)
-        
-        # Placeholder for 3D model update
-        st.write(f"Updating 3D model for a {gender} with BMI: {bmi:.2f}")
-        st.write("3D Model would be displayed here based on the calculated BMI.")
-        # st.components.v1.iframe("URL_TO_3D_MODEL")
+        plot_3d_shape(weight, height, waist, hip, gender)
 
 if __name__ == "__main__":
     main()
