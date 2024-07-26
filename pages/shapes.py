@@ -62,7 +62,7 @@ def main():
         <div id="body_viewer" style="position: relative; width: 550px; height: 670px;">
             <canvas id="bmiCanvas" width="550" height="670"></canvas>
             <script>
-                function drawBodyShape(bmi, weight, height, color) {{
+                function drawBodyShape(bmi, weight, height, gender, color) {{
                     var canvas = document.getElementById('bmiCanvas');
                     var ctx = canvas.getContext('2d');
                     ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -70,10 +70,19 @@ def main():
                     var centerX = canvas.width / 2;
                     var centerY = canvas.height / 2;
 
-                    var bodyWidth = 50 + (bmi - 20);
-                    var bodyHeight = 150 + ((height - 170) / 2);
-                    var armLength = bodyHeight / 4;
-                    var legLength = bodyHeight / 3;
+                    var bodyWidth, bodyHeight, armLength, legLength;
+
+                    if (gender === 'male') {{
+                        bodyWidth = 50 + (bmi - 20);
+                        bodyHeight = 150 + ((height - 170) / 2);
+                        armLength = bodyHeight / 4;
+                        legLength = bodyHeight / 3;
+                    }} else {{
+                        bodyWidth = 60 + (bmi - 20);
+                        bodyHeight = 160 + ((height - 160) / 2);
+                        armLength = bodyHeight / 4.5;
+                        legLength = bodyHeight / 3.5;
+                    }}
 
                     ctx.beginPath();
                     ctx.arc(centerX, centerY - bodyHeight / 2 - 30, 30, 0, 2 * Math.PI);
@@ -98,8 +107,9 @@ def main():
                 var bmi = {bmi};
                 var weight = {weight};
                 var height = {height};
+                var gender = '{gender}';
                 var color = '{color}';
-                drawBodyShape(bmi, weight, height, color);
+                drawBodyShape(bmi, weight, height, gender, color);
             </script>
         </div>
         """
