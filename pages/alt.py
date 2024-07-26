@@ -22,9 +22,6 @@ def calculate_body_fat_percentage(weight, height, neck, waist, hip, gender, unit
     return round(bfp, 2)
 
 def main():
-    
-    st.set_page_config(page_title="BMI 2.0 Calculator and 3D Visualizer v2", page_icon="🔥")
-
     st.title("BMI 2.0 Calculator and 3D Visualizer")
 
     st.sidebar.header("User Input Parameters")
@@ -48,9 +45,33 @@ def main():
         st.write(f"Calculated BMI: {bmi:.2f}")
         st.write(f"Calculated Body Fat Percentage: {bfp:.2f}%")
         
-        # Embed the 3D BMI visualizer
-        bmi_visualizer_url = f"https://www.bmivisualizer.com/?gender={gender}&weight={weight}&height={height}"
-        st.components.v1.iframe(bmi_visualizer_url, width=550, height=670)
+        # Embed the 3D BMI visualizer canvas with dynamic inputs
+        html_code = f"""
+        <div id="body_viewer">
+            <canvas id="bmiCanvas" width="550" height="670"></canvas>
+            <script>
+                var canvas = document.getElementById('bmiCanvas');
+                var context = canvas.getContext('2d');
+                var img = new Image();
+                img.src = 'https://www.bmivisualizer.com/body_viewer.png';  // Use a static image for demonstration
+                img.onload = function() {{
+                    context.drawImage(img, 0, 0, canvas.width, canvas.height);
+                }};
+                function updateCanvas() {{
+                    // This is a placeholder for the actual 3D rendering logic
+                    context.clearRect(0, 0, canvas.width, canvas.height);
+                    context.drawImage(img, 0, 0, canvas.width, canvas.height);
+                    context.font = '20px Arial';
+                    context.fillStyle = 'red';
+                    context.fillText('Gender: {gender}', 10, 30);
+                    context.fillText('Weight: {weight} kg', 10, 60);
+                    context.fillText('Height: {height} cm', 10, 90);
+                }}
+                updateCanvas();
+            </script>
+        </div>
+        """
+        components.html(html_code, height=700)
 
 if __name__ == "__main__":
     main()
