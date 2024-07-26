@@ -73,38 +73,59 @@ def main():
                     var bodyWidth, bodyHeight, armLength, legLength;
 
                     if (gender === 'male') {{
-                        bodyWidth = 50 + (bmi - 20);
-                        bodyHeight = 150 + ((height - 170) / 2);
-                        armLength = bodyHeight / 4;
-                        legLength = bodyHeight / 3;
+                        bodyWidth = 50;
+                        bodyHeight = 150;
+                        armLength = 100;
+                        legLength = 100;
+
+                        // Draw head
+                        ctx.beginPath();
+                        ctx.arc(centerX, centerY - bodyHeight / 2 - 30, 30, 0, 2 * Math.PI);
+                        ctx.fillStyle = color;
+                        ctx.fill();
+                        ctx.stroke();
+
+                        // Draw body
+                        ctx.fillStyle = color;
+                        ctx.fillRect(centerX - bodyWidth / 2, centerY - bodyHeight / 2, bodyWidth, bodyHeight);
+
+                        // Draw arms
+                        ctx.fillRect(centerX - bodyWidth / 2 - 20, centerY - bodyHeight / 2, 20, armLength);
+                        ctx.fillRect(centerX + bodyWidth / 2, centerY - bodyHeight / 2, 20, armLength);
+
+                        // Draw legs
+                        ctx.fillRect(centerX - bodyWidth / 4, centerY + bodyHeight / 2, 20, legLength);
+                        ctx.fillRect(centerX + bodyWidth / 4 - 20, centerY + bodyHeight / 2, 20, legLength);
                     }} else {{
-                        bodyWidth = 60 + (bmi - 20);
-                        bodyHeight = 160 + ((height - 160) / 2);
-                        armLength = bodyHeight / 4.5;
-                        legLength = bodyHeight / 3.5;
-                    }}
+                        bodyWidth = 50;
+                        bodyHeight = 100;
+                        armLength = 60;
+                        legLength = 120;
 
-                    // Draw head
-                    ctx.beginPath();
-                    ctx.arc(centerX, centerY - bodyHeight / 2 - 30, 30, 0, 2 * Math.PI);
-                    ctx.fillStyle = color;
-                    ctx.fill();
-                    ctx.stroke();
+                        // Draw head
+                        ctx.beginPath();
+                        ctx.arc(centerX, centerY - bodyHeight / 2 - 30, 30, 0, 2 * Math.PI);
+                        ctx.fillStyle = color;
+                        ctx.fill();
+                        ctx.stroke();
 
-                    // Draw body
-                    ctx.fillStyle = color;
-                    ctx.fillRect(centerX - bodyWidth / 2, centerY - bodyHeight / 2, bodyWidth, bodyHeight);
-                    ctx.fillRect(centerX - bodyWidth / 2 - 20, centerY - bodyHeight / 2, 20, armLength);
-                    ctx.fillRect(centerX + bodyWidth / 2, centerY - bodyHeight / 2, 20, armLength);
-                    ctx.fillRect(centerX - bodyWidth / 4, centerY + bodyHeight / 2, 20, legLength);
-                    ctx.fillRect(centerX + bodyWidth / 4 - 20, centerY + bodyHeight / 2, 20, legLength);
+                        // Draw body
+                        ctx.fillStyle = color;
+                        ctx.fillRect(centerX - bodyWidth / 2, centerY - bodyHeight / 2, bodyWidth, bodyHeight);
 
-                    // Draw skirt for female
-                    if (gender === 'female') {{
+                        // Draw arms
+                        ctx.fillRect(centerX - bodyWidth / 2 - 20, centerY - bodyHeight / 2, 20, armLength);
+                        ctx.fillRect(centerX + bodyWidth / 2, centerY - bodyHeight / 2, 20, armLength);
+
+                        // Draw legs
+                        ctx.fillRect(centerX - bodyWidth / 4, centerY + bodyHeight / 2, 20, legLength);
+                        ctx.fillRect(centerX + bodyWidth / 4 - 20, centerY + bodyHeight / 2, 20, legLength);
+
+                        // Draw skirt
                         ctx.beginPath();
                         ctx.moveTo(centerX - bodyWidth / 2, centerY + bodyHeight / 2);
-                        ctx.lineTo(centerX - bodyWidth, centerY + bodyHeight / 2 + 60);
-                        ctx.lineTo(centerX + bodyWidth, centerY + bodyHeight / 2 + 60);
+                        ctx.lineTo(centerX - bodyWidth * 1.5, centerY + bodyHeight / 2 + 60);
+                        ctx.lineTo(centerX + bodyWidth * 1.5, centerY + bodyHeight / 2 + 60);
                         ctx.lineTo(centerX + bodyWidth / 2, centerY + bodyHeight / 2);
                         ctx.closePath();
                         ctx.fillStyle = color;
