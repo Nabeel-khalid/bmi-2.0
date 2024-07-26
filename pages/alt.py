@@ -79,7 +79,7 @@ def main():
                     // Draw legs
                     ctx.fillRect(200 - bodyWidth / 4, 140 + bodyHeight, 20, 100);
                     ctx.fillRect(200 + bodyWidth / 4 - 20, 140 + bodyHeight, 20, 100);
-                }
+                }}
                 
                 // Update the canvas based on the current values
                 var bmi = {bmi};
