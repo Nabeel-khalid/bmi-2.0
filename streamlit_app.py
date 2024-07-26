@@ -79,10 +79,9 @@ def plot_3d_shape(weight, height, waist, hip, gender):
     st.plotly_chart(fig)
 
 def main():
-    st.set_page_config(page_title="BMI 2.0 Calculator and 3D Visualizer v1", page_icon="🏃‍♂️")
+    st.set_page_config(page_title="BMI 2.0 Calculator and 3D Visualizer", page_icon="🏃‍♂️")
 
     st.title("BMI 2.0 Calculator and 3D Visualizer")
-    st.sidebar.success("Select page above.")
 
     st.sidebar.header("User Input Parameters")
     
