@@ -1,4 +1,4 @@
 streamlit
 matplotlib
 matplotlib.pyplot
-plotly.graph_objects
+plotly
