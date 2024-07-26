@@ -22,8 +22,8 @@ def calculate_body_fat_percentage(weight, height, neck, waist, hip, gender, unit
     return round(bfp, 2)
 
 def main():
-    st.title("BMI 2.0 Calculator and 3D Visualizer" page_icon="🥲")
-
+    st.set_page_config(page_title="BMI 2.0 Calculator and 3D Visualizer", page_icon="🫠")
+    st.title("BMI 2.0 Calculator and 3D Visualizer")
 
     st.sidebar.header("User Input Parameters")
     
