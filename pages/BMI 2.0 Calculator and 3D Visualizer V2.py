@@ -2,10 +2,6 @@ import streamlit as st
 import math
 import streamlit.components.v1 as components
 
-st.set_page_config(page_title="BMI 2.0 Calculator and 3D Visualizer v2", page_icon="🔥")
-st.markdown("# BMI 2.0 Calculator and 3D Visualizer v2")
-st.sidebar.header("BMI 2.0 Calculator and 3D Visualizer v2")
-
 def calculate_bmi(weight, height):
     return weight / (height / 100) ** 2
 
@@ -26,6 +22,9 @@ def calculate_body_fat_percentage(weight, height, neck, waist, hip, gender, unit
     return round(bfp, 2)
 
 def main():
+    
+    st.set_page_config(page_title="BMI 2.0 Calculator and 3D Visualizer v2", page_icon="🔥")
+
     st.title("BMI 2.0 Calculator and 3D Visualizer")
 
     st.sidebar.header("User Input Parameters")
