@@ -84,12 +84,14 @@ def main():
                         legLength = bodyHeight / 3.5;
                     }}
 
+                    // Draw head
                     ctx.beginPath();
                     ctx.arc(centerX, centerY - bodyHeight / 2 - 30, 30, 0, 2 * Math.PI);
                     ctx.fillStyle = color;
                     ctx.fill();
                     ctx.stroke();
 
+                    // Draw body
                     ctx.fillStyle = color;
                     ctx.fillRect(centerX - bodyWidth / 2, centerY - bodyHeight / 2, bodyWidth, bodyHeight);
                     ctx.fillRect(centerX - bodyWidth / 2 - 20, centerY - bodyHeight / 2, 20, armLength);
@@ -97,6 +99,20 @@ def main():
                     ctx.fillRect(centerX - bodyWidth / 4, centerY + bodyHeight / 2, 20, legLength);
                     ctx.fillRect(centerX + bodyWidth / 4 - 20, centerY + bodyHeight / 2, 20, legLength);
 
+                    // Draw skirt for female
+                    if (gender === 'female') {{
+                        ctx.beginPath();
+                        ctx.moveTo(centerX - bodyWidth / 2, centerY + bodyHeight / 2);
+                        ctx.lineTo(centerX - bodyWidth, centerY + bodyHeight / 2 + 60);
+                        ctx.lineTo(centerX + bodyWidth, centerY + bodyHeight / 2 + 60);
+                        ctx.lineTo(centerX + bodyWidth / 2, centerY + bodyHeight / 2);
+                        ctx.closePath();
+                        ctx.fillStyle = color;
+                        ctx.fill();
+                        ctx.stroke();
+                    }}
+
+                    // Draw BMI and weight text
                     ctx.font = '20px Arial';
                     ctx.fillStyle = 'black';
                     ctx.fillText('BMI: ' + bmi.toFixed(2), 10, 30);
