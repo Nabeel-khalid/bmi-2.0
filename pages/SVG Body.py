@@ -1,5 +1,8 @@
 import streamlit as st
-from streamlit.components.v1 import components
+import streamlit.components.v1 as components
+
+components.html("example")
+
 
 def calculate_bmi(weight, height):
     return weight / (height / 100) ** 2
